@@ -12,5 +12,6 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    echo '111';
 });
+Route::get('/home','Home\IndexController@index');
