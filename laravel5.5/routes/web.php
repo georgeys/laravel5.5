@@ -23,3 +23,5 @@ Route::group(['prefix'=>'home'],function (){
     Route::get('show','Home\IndexController@show');
 });
 
+
+Route::get('test','TestController@test');
