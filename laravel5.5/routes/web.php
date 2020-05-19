@@ -14,4 +14,12 @@
 Route::get('/', function () {
     echo '111';
 });
-Route::get('/home','Home\IndexController@index');
+Route::group(['prefix'=>'home'],function (){
+    Route::get('/','Home\IndexController@index');
+    Route::get('add','Home\IndexController@add');
+    Route::get('del','Home\IndexController@del');
+    Route::get('update','Home\IndexController@update');
+    Route::get('select','Home\IndexController@select');
+    Route::get('show','Home\IndexController@show');
+});
+
