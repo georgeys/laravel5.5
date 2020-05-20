@@ -36,3 +36,10 @@ Route::get('test4','TestController@test4');
 Route::get('test5','TestController@test5');
 Route::any('test6','TestController@test6');
 Route::get('test7','TestController@test7');
+Route::get('test8','TestController@test8');
+Route::any('test9','TestController@test9');
+
+//file文件上传
+Route::group(['prefix'=>'file'],function (){
+    Route::any('/','File\IndexController@index');
+});

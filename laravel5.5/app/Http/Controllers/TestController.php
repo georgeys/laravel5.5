@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Illuminate\View\View;
 use App\Home\Member;
+use Illuminate\Support\Facades\Input;
 
 class TestController extends Controller
 {
@@ -58,5 +59,38 @@ class TestController extends Controller
      $result = $students->create($request->all());
      dd($request);
     }
+    //查询
+    public function test7()
+    {
+        $data = Member::find(8)->toarray();
+        dd($data);
+    }
+    //ar模式修改
 
+    public function test8()
+    {
+        $data = Member::find(7);
+        $data -> name  = 'laowang';
+        $data ->save();
+     $result=Member::where('id','8')->update(['name'=>'老王']);
+     dd($result);
+    }
+    //自动验证(Input::method()获取请求类型)
+   public function test9(Request $request)
+   {
+       //如果是post进行此逻辑
+       if (Input::method() == "POST")
+       {
+           $this->validate($request,[
+               'name' => 'required|unique:student|min:2|max:50',
+               'age'  => 'required|integer|min:1|max:200'
+               //.....resources\lang...
+           ]);
+           //如果信息符合则下一步不通过的话在返回
+           echo '111';
+       }else
+       {
+            return \view('test.test9');
+       }
+   }
 }
