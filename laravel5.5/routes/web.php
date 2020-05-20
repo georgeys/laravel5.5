@@ -23,5 +23,16 @@ Route::group(['prefix'=>'home'],function (){
     Route::get('show','Home\IndexController@show');
 });
 
-
+//视图
 Route::get('test','TestController@test');
+Route::get('test1','TestController@test1');
+
+//csrf验证
+Route::get('test2','TestController@test2');
+Route::post('test3','TestController@test3');
+
+//模型增删改查
+Route::get('test4','TestController@test4');
+Route::get('test5','TestController@test5');
+Route::any('test6','TestController@test6');
+Route::get('test7','TestController@test7');
