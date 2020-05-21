@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>文件上传</title>
+	<link rel="stylesheet" href="{{asset('css/app.css')}}">
 </head>
 <body>
 @if (count($errors) > 0)
@@ -24,6 +25,8 @@
 	<p>奖金：<input type="number" name="bonus"></p>
 	<p>城市：<input type="text" name="city"></p>
 	<p>城市：<input type="file" name="avatar"></p>
+	<p>验证码：<input type="text" name="captcha"> <img src="{{captcha_src()}}"
+	     onclick="this.src='{{captcha_src()}}?'+Math.random()"></p>
 	<input type="submit">
 </form>
 </body>

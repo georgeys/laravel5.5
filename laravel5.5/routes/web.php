@@ -42,4 +42,5 @@ Route::any('test9','TestController@test9');
 //file文件上传
 Route::group(['prefix'=>'file'],function (){
     Route::any('/','File\IndexController@index');
+    Route::get('/show','File\IndexController@show');
 });

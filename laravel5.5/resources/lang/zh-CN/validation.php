@@ -173,5 +173,11 @@ return [
         'time'                  => '时间',
         'available'             => '可用的',
         'size'                  => '大小',
+        'edu'                   => '学历',
+        'avatar'                => '头像',
+        'salary'                => '工资',
+        'captcha'               => '验证码',
     ],
+    //添加captcha
+    'captcha'                   =>'验证码错误'
 ];
