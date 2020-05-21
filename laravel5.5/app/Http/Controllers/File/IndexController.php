@@ -48,4 +48,14 @@ class IndexController extends Controller
         $data = Member::paginate(2);
         return view('file.show',compact('data'));
     }
+    public function list()
+    {
+        if (Input::method() == 'POST')
+        {
+
+        }else
+        {
+           return view('file.list');
+        }
+    }
 }
