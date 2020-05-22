@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Home\Article;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\View\View;
 use App\Home\Member;
 use Illuminate\Support\Facades\Input;
+use Session;
+use Cache;
 
 class TestController extends Controller
 {
@@ -93,4 +96,74 @@ class TestController extends Controller
             return \view('test.test9');
        }
    }
+   public function see()
+   {
+       //添加一条
+       Session::push('name','老王');
+       //获取一个session
+       Session::get('name');
+       //获取如果变量不存在
+       Session::get('name', 'laowang');
+       Session::get('age', function (){return '18';});
+       dd(Session::get('age'));
+       //判断是否存在
+       Session::has('age');
+       //所有session
+       Session::all();
+       //删除Session 中的name
+       Session::forget('name');
+       //删除所有
+       Session::flush();
+   }
+   //缓存
+   public function  cache()
+   {
+       //添加缓存有则覆盖
+        Cache::put('class','php2018',10);
+        Cache::put('class','php2019',10);
+        //添加有则不执行
+        Cache::add('add','sssss',10);
+        //添加永久
+        Cache::forever('username','yuanshuai');
+        //获取缓存
+        Cache::get('username');
+        //获取缓存如果没有则默认为default
+        Cache::get('user','什么都没有');
+        //获取后删除（一次性存储的数据）
+        //$value = Cache::pull('user');
+        //Cache::forget('username');//删除一项
+        //Cache::flush();//删除所有
+       //缓存计数器increment默认为1
+       Cache::add('count', '0', 1440);
+       //递增
+       //dd(Cache::increment('count'));
+       //递减
+       //Cache::decrement('count');
+       //设置默认时间100分钟更新一次
+       $time = Cache::remember('time',100,function ()
+       {
+            return date('Y-m-d H:i:s',time());
+       });
+       dd($time);
+
+   }
+   public function sql()
+   {
+//       //SELECT t1.id,t1.article_name,t2.author_name
+//        //FROM article AS t1  JOIN author AS t2 ON t1.author_id=t2.id
+//       $data= DB::table('article as t1')
+////           ->select(DB::raw('1.id,t1.article_name,t2.author_name'))
+//           ->select('t1.id','t1.article_name','t2.author_name')
+//           ->leftJoin('author as t2','t1.author_id','=','t2.id')
+//           ->get();
+//       dd($data);
+    $data = Article::get();
+    foreach ($data as $key => $val )
+    {
+        echo $val->id.$val->article_name.$val->author->author_name."<br>";
+    }
+
+   }
+
+
 }

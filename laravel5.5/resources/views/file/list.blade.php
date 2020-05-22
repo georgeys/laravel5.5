@@ -7,6 +7,15 @@
 	<script type="text/javascript" src="{{asset('js/jquery.js')}}"></script>
 </head>
 <body>
-
+<input type="button" value="点我" id="btn">
 </body>
+<script type="text/javascript">
+	$(function () {
+		$('#btn').click(function () {
+			$.get('/file/list1',function (data) {
+				console.log(data)
+            },'json');
+        })
+    });
+</script>
 </html>

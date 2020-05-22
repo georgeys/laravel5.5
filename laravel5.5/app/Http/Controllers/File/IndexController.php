@@ -5,7 +5,9 @@ namespace App\Http\Controllers\File;
 use App\Home\Member;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Input;
+use Session;
 
 class IndexController extends Controller
 {
@@ -37,6 +39,9 @@ class IndexController extends Controller
              //将文件完整路径放入数组·
              $data['avatar'] = './uploads/img/'.$path;
              $result = Member::create($data);
+             if ($request){
+                 return redirect('/');
+             }
             }
         }else
         {
@@ -50,12 +55,11 @@ class IndexController extends Controller
     }
     public function list()
     {
-        if (Input::method() == 'POST')
-        {
-
-        }else
-        {
            return view('file.list');
-        }
+    }
+    public function list1()
+    {
+          $data = Member::all();
+          return \response()->json($data);
     }
 }

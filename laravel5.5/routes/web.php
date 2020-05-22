@@ -43,5 +43,13 @@ Route::any('test9','TestController@test9');
 Route::group(['prefix'=>'file'],function (){
     Route::any('/','File\IndexController@index');
     Route::get('/show','File\IndexController@show');
-    Route::any('/list','File\IndexController@list');
+    Route::get('/list','File\IndexController@list');
+    Route::get('/list1','File\IndexController@list1');
 });
+
+//Session
+Route::get('session','TestController@see');
+Route::get('cache','TestController@cache');
+
+//连表查询
+Route::get('sql','TestController@sql');
